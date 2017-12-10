@@ -43,27 +43,41 @@ def create_env(which_agent):
 
     # setup environment
     if(which_agent==0):
-        env = normalize(PointEnv())
+        env = PointEnv()
+        dt_from_xml = env.model.opt.timestep
+        env = normalize(env)
     elif(which_agent==1):
-        env = normalize(AntEnv())
+        env = AntEnv()
+        dt_from_xml = env.model.opt.timestep
+        env = normalize(env)
     elif(which_agent==2):
+        env = SwimmerEnv()
+        dt_from_xml = env.model.opt.timestep
         env = normalize(SwimmerEnv()) #dt 0.001 and frameskip=150
     elif(which_agent==3):
         env = ReacherEnv() 
-    elif(which_agent==4):
-        env = normalize(HalfCheetahEnv())
-    elif(which_agent==5):
-        env = RoachEnv() #this is a personal vrep env
-    elif(which_agent==6):
-        env=normalize(HopperEnv())
-    elif(which_agent==7):
-        env=normalize(Walker2DEnv())
-
-    #get dt value from env
-    if(which_agent==5):
-        dt_from_xml = env.VREP_DT
-    else:
         dt_from_xml = env.model.opt.timestep
+    elif(which_agent==4):
+        env = HalfCheetahEnv()
+        dt_from_xml = env.model.opt.timestep
+        env = normalize(env)
+    elif(which_agent==5):
+        env = RoachEnv() #this is a personal vrep env        
+        dt_from_xml = env.VREP_DT
+    elif(which_agent==6):
+        env = HopperEnv()
+        dt_from_xml = env.model.opt.timestep
+        env=normalize(env)
+    elif(which_agent==7):
+        env = Walker2DEnv()
+        dt_from_xml = env.model.opt.timestep
+        env=normalize(env)
+
+    #get dt value from env - DOES NOT WORK !!!!
+    #     if(which_agent==5):
+    #         dt_from_xml = env.VREP_DT
+    #     else:
+    #         dt_from_xml = env.model.opt.timestep
     print("\n\n the dt is: ", dt_from_xml, "\n\n")
 
     #set vars
