@@ -61,9 +61,9 @@ def create_env(which_agent):
         env = HalfCheetahEnv()
         dt_from_xml = env.model.opt.timestep
         env = normalize(env)
-    elif(which_agent==5):
-        env = RoachEnv() #this is a personal vrep env        
-        dt_from_xml = env.VREP_DT
+#     elif(which_agent==5):
+#         env = RoachEnv() #this is a personal vrep env        
+#         dt_from_xml = env.VREP_DT
     elif(which_agent==6):
         env = HopperEnv()
         dt_from_xml = env.model.opt.timestep
